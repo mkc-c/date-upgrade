@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function Counter() {
   const [steps, setSteps] = useState(1);
   const [count, setCount] = useState(0);
   const [date, setDate] = useState(new Date());
+  const inputRef = useRef();
 
   function handleCountDown() {
     setCount((currentCount) => {
@@ -25,13 +26,16 @@ function Counter() {
 
   function handleSliderChange(event) {
     setSteps(Number(event.target.value));
-    setCount((currentCount) => {
-      return currentCount + steps;
-    });
+
+    if (event.target === inputRef.current)
+      setCount((currentCount) => {
+        return currentCount + steps;
+      });
   }
 
   function handleChange(event) {
-    setCount(parseInt(event.target.value) || 0);
+    if (event.target.type === inputRef.current.type)
+      setCount(parseInt(event.target.value) || 0);
 
     setDate(new Date(date.setDate(date.getDate() + count)));
   }
@@ -80,7 +84,12 @@ function Counter() {
       <div className="counter__count">
         <button onClick={handleCountDown}>-</button>
         <span>
-          <input type="text" value={Number(count)} onChange={handleChange} />
+          <input
+            ref={inputRef}
+            type="text"
+            value={Number(count)}
+            onChange={handleChange}
+          />
         </span>
         <button onClick={handleCountUp}>+</button>
       </div>
