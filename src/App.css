@@ -2,16 +2,6 @@
   text-align: center;
 }
 
-.counter__count input::-webkit-outer-spin-button,
-.counter__count input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.counter__count input[type="number"] {
-  -moz-appearance: textfield;
-}
-
 .counter__steps {
   display: flex;
   flex-direction: row;

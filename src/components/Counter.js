@@ -80,7 +80,7 @@ function Counter() {
       <div className="counter__count">
         <button onClick={handleCountDown}>-</button>
         <span>
-          <input type="number" value={count} onChange={handleChange} />
+          <input type="text" value={Number(count)} onChange={handleChange} />
         </span>
         <button onClick={handleCountUp}>+</button>
       </div>
