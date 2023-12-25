@@ -5,14 +5,6 @@ function Counter() {
   const [count, setCount] = useState(0);
   const [date, setDate] = useState(new Date());
 
-  function handleStepDown() {
-    setSteps((currentStep) => currentStep - 1);
-  }
-
-  function handleStepUp() {
-    setSteps((currentStep) => currentStep + 1);
-  }
-
   function handleCountDown() {
     setCount((currentCount) => {
       if (steps === 1) return count - 1;
