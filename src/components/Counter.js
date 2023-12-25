@@ -31,7 +31,7 @@ function Counter() {
   }
 
   function handleChange(event) {
-    setCount(Number(event.target.value));
+    setCount(parseInt(event.target.value) || 0);
 
     setDate(new Date(date.setDate(date.getDate() + count)));
   }
@@ -41,7 +41,7 @@ function Counter() {
   }
 
   function renderedDate() {
-    if (date.toDateString() === new Date().toDateString() || date === 0) {
+    if (date.toDateString() === new Date().toDateString() || count === 0) {
       return `Today is ${formattedDate()}`;
     } else {
       return `${Math.abs(count)} day${
@@ -56,7 +56,7 @@ function Counter() {
   }
 
   function renderResetButton() {
-    if (steps !== 1 && count)
+    if (steps === 1 && count !== 0)
       return (
         <div>
           <button onClick={handleReset}>Reset</button>
@@ -80,7 +80,7 @@ function Counter() {
       <div className="counter__count">
         <button onClick={handleCountDown}>-</button>
         <span>
-          <input type="number" value={count || 0} onChange={handleChange} />
+          <input type="number" value={count} onChange={handleChange} />
         </span>
         <button onClick={handleCountUp}>+</button>
       </div>
